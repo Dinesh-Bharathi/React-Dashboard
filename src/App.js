@@ -1,24 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import { Box, Container } from "@mui/material";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import "./App.css";
+import MiniDrawer from "./components/MiniDrawer";
+import Dashboard from "./Pages/Dashboard";
+import NoPage from "./Pages/NoPage";
+import AppBar from "./components/AppBar";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Box sx={{ display: "flex" }}>
+        <MiniDrawer />
+        <Box component="main" sx={{ flexGrow: 1, width: "100%" }}>
+          <AppBar />
+          <Routes>
+            <Route path="/" element={<Dashboard />} />
+            <Route path="dashboard" element={<Dashboard />} />
+            <Route path="*" element={<NoPage />} />
+          </Routes>
+        </Box>
+      </Box>
+    </BrowserRouter>
   );
 }
 
