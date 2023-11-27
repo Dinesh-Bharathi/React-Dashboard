@@ -683,17 +683,20 @@ export default function ButtonAppBar() {
               }}
               PaperProps={{
                 style: {
-                  padding: "0.6em", // Increase padding as needed
+                  padding: "0.6em 0.8em", // Increase padding as needed
                 },
               }}
             >
-              <MenuItem>
-                <Typography
-                  sx={{ fontSize: "0.8rem", width: "100%", height: "100%" }}
-                >
-                  Welcome!
-                </Typography>
-              </MenuItem>
+              <Typography
+                sx={{
+                  fontSize: "0.8rem",
+                  width: "100%",
+                  height: "100%",
+                  padding: "0 0 0.5em 1em",
+                }}
+              >
+                Welcome!
+              </Typography>
               <MenuItem onClick={handleClose}>
                 <PersonIcon sx={{ marginRight: "16px" }} />
                 <Typography>My profile</Typography>
