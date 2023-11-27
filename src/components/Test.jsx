@@ -29,7 +29,6 @@ import PieChartIcon from "@mui/icons-material/PieChart";
 import EventIcon from "@mui/icons-material/Event";
 import { Outlet, Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
-import Collapse from "@mui/material/Collapse";
 
 const drawerWidth = 250;
 
@@ -136,11 +135,6 @@ export default function MiniDrawer() {
   const theme = useTheme();
   const [open, setOpen] = React.useState(true);
   const [hoverOpen, setHoverOpen] = React.useState(false);
-  const [openSubMenu, setOpenSubMenu] = React.useState(false);
-
-  const handleSubMenuClick = () => {
-    setOpenSubMenu(!openSubMenu);
-  };
 
   const handleDrawerOpen = () => {
     if (hoverOpen) {
@@ -199,97 +193,9 @@ export default function MiniDrawer() {
               {hoverOpen ? <MenuOpenIcon /> : <MenuIcon />}
             </IconButton>
           </DrawerHeader>
-          <List>
-            <ListItem
-              key="Dashboard"
-              disablePadding
-              sx={{
-                display: "block",
-                "&:hover": {
-                  backgroundColor: "#fff !important",
-                },
-              }}
-            >
-              <ListItemButton
-                sx={{
-                  minHeight: 48,
-                  justifyContent: open ? "initial" : "center",
-                  px: 2.5,
-                  border: "none",
-                }}
-                onClick={handleSubMenuClick}
-              >
-                <ListItemIcon
-                  sx={{
-                    minWidth: 0,
-                    mr: open ? 3 : "auto",
-                    justifyContent: "center",
-                  }}
-                >
-                  <HouseIcon fontSize="small" color="primary" />
-                </ListItemIcon>
-                <ListItemText
-                  primary="Dashboard"
-                  sx={{
-                    opacity: open ? 1 : 0,
-                    "& span": {
-                      fontSize: "0.9rem !important",
-                      color:
-                        location.pathname === "/dashboard"
-                          ? "rgba(0, 0, 0, 0.9)"
-                          : "rgba(0, 0, 0, 0.5)",
-                      "&:hover": {
-                        color: "rgba(0, 0, 0, 0.9)",
-                      },
-                    },
-                  }}
-                />
-              </ListItemButton>
-              <Collapse in={openSubMenu} timeout="auto" unmountOnExit>
-                <List component="div" disablePadding>
-                  <Link to="/dashboard" style={{ textDecoration: "none" }}>
-                    <ListItemButton
-                      sx={{
-                        minHeight: 48,
-                        justifyContent: open ? "initial" : "center",
-                        px: 3.5,
-                        border: "none",
-                      }}
-                    >
-                      <ListItemIcon
-                        sx={{
-                          minWidth: 0,
-                          mr: open ? 3 : "auto",
-                          justifyContent: "center",
-                          fontSize: "0.9rem !important",
-                          textDecoration: "none",
-                        }}
-                      >
-                        D
-                      </ListItemIcon>
-                      <ListItemText
-                        primary="Dashboard"
-                        sx={{
-                          opacity: open ? 1 : 0,
-                          "& span": {
-                            fontSize: "0.9rem !important",
-                            textDecoration: "none",
-                            color:
-                              location.pathname === `/dashboard`
-                                ? "rgba(0, 0, 0, 0.9)"
-                                : "rgba(0, 0, 0, 0.5)",
-                            "&:hover": {
-                              color: "rgba(0, 0, 0, 0.9)",
-                            },
-                          },
-                        }}
-                      />
-                    </ListItemButton>
-                  </Link>
-                </List>
-              </Collapse>
-            </ListItem>
+          <List sx={{ paddingTop: "2.5em" }}>
             {[
+              "Dashboard",
               "Examples",
               "Components",
               "Forms",
@@ -330,30 +236,33 @@ export default function MiniDrawer() {
                     >
                       {/* Your icon components */}
                       {index === 0 && (
-                        <PermMediaIcon fontSize="small" color="error" />
+                        <HouseIcon fontSize="small" color="primary" />
                       )}
                       {index === 1 && (
-                        <StorageIcon fontSize="small" color="info" />
+                        <PermMediaIcon fontSize="small" color="error" />
                       )}
                       {index === 2 && (
+                        <StorageIcon fontSize="small" color="info" />
+                      )}
+                      {index === 3 && (
                         <ListAltIcon
                           fontSize="small"
                           sx={{ color: "rgb(243, 164, 181)" }}
                         />
                       )}
-                      {index === 3 && (
+                      {index === 4 && (
                         <TocIcon fontSize="small" sx={{ color: "#000" }} />
                       )}
-                      {index === 4 && (
+                      {index === 5 && (
                         <MapIcon fontSize="small" color="primary" />
                       )}
-                      {index === 5 && (
+                      {index === 6 && (
                         <WidgetsIcon fontSize="small" color="success" />
                       )}
-                      {index === 6 && (
+                      {index === 7 && (
                         <PieChartIcon fontSize="small" color="info" />
                       )}
-                      {index === 7 && (
+                      {index === 8 && (
                         <EventIcon fontSize="small" color="info" />
                       )}
                     </ListItemIcon>

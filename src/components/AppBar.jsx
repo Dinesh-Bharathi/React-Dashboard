@@ -1,88 +1,727 @@
 import * as React from "react";
-import { styled, alpha } from "@mui/material/styles";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
-import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
+import Button from "@mui/material/Button";
+import IconButton from "@mui/material/IconButton";
+import Paper from "@mui/material/Paper";
 import InputBase from "@mui/material/InputBase";
-import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
+import { Avatar, Container, Divider, Grid } from "@mui/material";
+import NotificationsIcon from "@mui/icons-material/Notifications";
+import FileCopyIcon from "@mui/icons-material/FileCopy";
+import ProfileImage from "../assets/images/profile.png";
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
+import PersonIcon from "@mui/icons-material/Person";
+import SettingsIcon from "@mui/icons-material/Settings";
+import EventNoteIcon from "@mui/icons-material/EventNote";
+import LiveHelpIcon from "@mui/icons-material/LiveHelp";
+import DirectionsRunIcon from "@mui/icons-material/DirectionsRun";
+import Badge from "@mui/material/Badge";
+import DateRangeIcon from "@mui/icons-material/DateRange";
+import EmailIcon from "@mui/icons-material/Email";
+import CreditCardIcon from "@mui/icons-material/CreditCard";
+import ReportIcon from "@mui/icons-material/Report";
+import LocationOnIcon from "@mui/icons-material/LocationOn";
+import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
 
-const Search = styled("div")(({ theme }) => ({
-  position: "relative",
-  borderRadius: theme.shape.borderRadius,
-  backgroundColor: alpha(theme.palette.common.white, 0.15),
-  "&:hover": {
-    backgroundColor: alpha(theme.palette.common.white, 0.25),
-  },
-  marginLeft: 0,
-  width: "100%",
-  [theme.breakpoints.up("sm")]: {
-    marginLeft: theme.spacing(1),
-    width: "auto",
-  },
-}));
+export default function ButtonAppBar() {
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [notificationsAnchorEl, setNotificationsAnchorEl] =
+    React.useState(null);
+  const [appsAnchorEl, setAppsAnchorEl] = React.useState(null);
 
-const SearchIconWrapper = styled("div")(({ theme }) => ({
-  padding: theme.spacing(0, 2),
-  height: "100%",
-  position: "absolute",
-  pointerEvents: "none",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-}));
+  const open = Boolean(anchorEl);
+  const notificationsOpen = Boolean(notificationsAnchorEl);
+  const appsOpen = Boolean(appsAnchorEl);
 
-const StyledInputBase = styled(InputBase)(({ theme }) => ({
-  color: "inherit",
-  "& .MuiInputBase-input": {
-    padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
-    paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-    transition: theme.transitions.create("width"),
-    width: "100%",
-    [theme.breakpoints.up("sm")]: {
-      width: "12ch",
-      "&:focus": {
-        width: "20ch",
-      },
-    },
-  },
-}));
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
 
-export default function SearchAppBar() {
+  const handleNotificationsClick = (event) => {
+    setNotificationsAnchorEl(event.currentTarget);
+  };
+
+  const handleAppsClick = (event) => {
+    setAppsAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const handleNotificationsClose = () => {
+    setNotificationsAnchorEl(null);
+  };
+
+  const handleAppsClose = () => {
+    setAppsAnchorEl(null);
+  };
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
-        <Toolbar>
-          <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="open drawer"
-            sx={{ mr: 2 }}
+      <AppBar
+        position="static"
+        sx={{ background: "rgb(17, 205, 239)", boxShadow: "none", p: "0.5em" }}
+      >
+        <Grid
+          container
+          display={"flex"}
+          justifyContent={"space-between"}
+          alignItems={"center"}
+        >
+          <Grid item>
+            <Toolbar>
+              <Paper
+                component="form"
+                sx={{
+                  p: "4px",
+                  display: "flex",
+                  alignItems: "center",
+                  width: 400,
+                  borderRadius: "50px",
+                  maxWidth: "308px",
+                  boxShadow: "none",
+                }}
+              >
+                <IconButton
+                  sx={{ p: "12px", color: "#212121" }}
+                  aria-label="menu"
+                >
+                  <SearchIcon fontSize="small" sx={{ fontSize: "14px" }} />
+                </IconButton>
+                <InputBase
+                  sx={{ flex: 1, color: "rgb(33, 37, 41) !important;" }}
+                  placeholder="Search"
+                  inputProps={{ "aria-label": "search google maps" }}
+                />
+              </Paper>
+            </Toolbar>
+          </Grid>
+          <Grid
+            item
+            display={"flex"}
+            justifyContent={"space-between"}
+            alignItems={"center"}
+            mr="1em"
           >
-            <MenuIcon />
-          </IconButton>
-          <Typography
-            variant="h6"
-            noWrap
-            component="div"
-            sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
-          >
-            MUI
-          </Typography>
-          <Search>
-            <SearchIconWrapper>
-              <SearchIcon />
-            </SearchIconWrapper>
-            <StyledInputBase
-              placeholder="Search…"
-              inputProps={{ "aria-label": "search" }}
-            />
-          </Search>
-        </Toolbar>
+            {/* Notification tab */}
+            <IconButton
+              sx={{ color: "#fff", p: "0.5em" }}
+              onClick={handleNotificationsClick}
+            >
+              <Badge variant="dot" color="secondary">
+                <NotificationsIcon sx={{ fontSize: "16px" }} />
+              </Badge>
+            </IconButton>
+            <Menu
+              id="notifications-menu"
+              anchorEl={notificationsAnchorEl}
+              open={notificationsOpen}
+              onClose={handleNotificationsClose}
+              MenuListProps={{
+                "aria-labelledby": "notifications-icon",
+              }}
+              anchorOrigin={{
+                vertical: "top",
+                horizontal: "right",
+              }}
+              transformOrigin={{
+                vertical: "top",
+                horizontal: "right",
+              }}
+              PaperProps={{
+                style: {
+                  padding: "0.6em",
+                  minWidth: "420px",
+                },
+              }}
+            >
+              <ul>
+                <li style={{ padding: "0.5em 0.5em" }}>
+                  <Typography variant="body1" sx={{ color: "#8898AA" }}>
+                    You have{" "}
+                    <Typography
+                      fontWeight={600}
+                      variant="span"
+                      sx={{ color: "#11cdef" }}
+                    >
+                      13
+                    </Typography>{" "}
+                    notifications.
+                  </Typography>
+                </li>
+                <li style={{ padding: "0.5em 0" }}>
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      padding: "0 0.5em",
+                    }}
+                  >
+                    <Avatar
+                      src={ProfileImage}
+                      sx={{ height: "50px", width: "50px" }}
+                    />
+                    <div style={{ width: "100%", padding: "0 1em 0 1.5em" }}>
+                      <div
+                        style={{
+                          display: "flex",
+                          justifyContent: "space-between",
+                        }}
+                      >
+                        <Typography
+                          variant="h6"
+                          sx={{
+                            fontSize: "14px",
+                            fontWeight: "500",
+                            lineHeight: "1.5",
+                            color: "rgb(50, 50, 93)",
+                          }}
+                        >
+                          John Snow
+                        </Typography>
+                        <Typography
+                          variant="body2"
+                          sx={{
+                            textAlign: "right",
+                            color: "rgb(136, 152, 170)",
+                            fontSize: "80%",
+                          }}
+                        >
+                          2 hrs ago
+                        </Typography>
+                      </div>
+                      <div>
+                        <Typography
+                          sx={{
+                            fontSize: "0.875rem",
+                            fontWeight: "300",
+                            lineHeight: "1.7",
+                            margin: "0px",
+                            color: "#525F7F",
+                          }}
+                        >
+                          Let's meet at Starbucks at 11:30. Wdyt?
+                        </Typography>
+                      </div>
+                    </div>
+                  </div>
+                  <Divider sx={{ mt: 2 }} />
+                </li>
+                <li style={{ padding: "0.5em 0" }}>
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      padding: "0 0.5em",
+                    }}
+                  >
+                    <Avatar
+                      src={ProfileImage}
+                      sx={{ height: "50px", width: "50px" }}
+                    />
+                    <div style={{ width: "100%", padding: "0 1em 0 1.5em" }}>
+                      <div
+                        style={{
+                          display: "flex",
+                          justifyContent: "space-between",
+                        }}
+                      >
+                        <Typography
+                          variant="h6"
+                          sx={{
+                            fontSize: "14px",
+                            fontWeight: "500",
+                            lineHeight: "1.5",
+                            color: "rgb(50, 50, 93)",
+                          }}
+                        >
+                          John Snow
+                        </Typography>
+                        <Typography
+                          variant="body2"
+                          sx={{
+                            textAlign: "right",
+                            color: "rgb(136, 152, 170)",
+                            fontSize: "80%",
+                          }}
+                        >
+                          2 hrs ago
+                        </Typography>
+                      </div>
+                      <div>
+                        <Typography
+                          sx={{
+                            fontSize: "0.875rem",
+                            fontWeight: "300",
+                            lineHeight: "1.7",
+                            margin: "0px",
+                            color: "#525F7F",
+                          }}
+                        >
+                          Let's meet at Starbucks at 11:30. Wdyt?
+                        </Typography>
+                      </div>
+                    </div>
+                  </div>
+                  <Divider sx={{ mt: 2 }} />
+                </li>
+                <li style={{ padding: "0.5em 0" }}>
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      padding: "0 0.5em",
+                    }}
+                  >
+                    <Avatar
+                      src={ProfileImage}
+                      sx={{ height: "50px", width: "50px" }}
+                    />
+                    <div style={{ width: "100%", padding: "0 1em 0 1.5em" }}>
+                      <div
+                        style={{
+                          display: "flex",
+                          justifyContent: "space-between",
+                        }}
+                      >
+                        <Typography
+                          variant="h6"
+                          sx={{
+                            fontSize: "14px",
+                            fontWeight: "500",
+                            lineHeight: "1.5",
+                            color: "rgb(50, 50, 93)",
+                          }}
+                        >
+                          John Snow
+                        </Typography>
+                        <Typography
+                          variant="body2"
+                          sx={{
+                            textAlign: "right",
+                            color: "rgb(136, 152, 170)",
+                            fontSize: "80%",
+                          }}
+                        >
+                          2 hrs ago
+                        </Typography>
+                      </div>
+                      <div>
+                        <Typography
+                          sx={{
+                            fontSize: "0.875rem",
+                            fontWeight: "300",
+                            lineHeight: "1.7",
+                            margin: "0px",
+                            color: "#525F7F",
+                          }}
+                        >
+                          Let's meet at Starbucks at 11:30. Wdyt?
+                        </Typography>
+                      </div>
+                    </div>
+                  </div>
+                  <Divider sx={{ mt: 2 }} />
+                </li>
+                <li style={{ padding: "0.5em 0" }}>
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      padding: "0 0.5em",
+                    }}
+                  >
+                    <Avatar
+                      src={ProfileImage}
+                      sx={{ height: "50px", width: "50px" }}
+                    />
+                    <div style={{ width: "100%", padding: "0 1em 0 1.5em" }}>
+                      <div
+                        style={{
+                          display: "flex",
+                          justifyContent: "space-between",
+                        }}
+                      >
+                        <Typography
+                          variant="h6"
+                          sx={{
+                            fontSize: "14px",
+                            fontWeight: "500",
+                            lineHeight: "1.5",
+                            color: "rgb(50, 50, 93)",
+                          }}
+                        >
+                          John Snow
+                        </Typography>
+                        <Typography
+                          variant="body2"
+                          sx={{
+                            textAlign: "right",
+                            color: "rgb(136, 152, 170)",
+                            fontSize: "80%",
+                          }}
+                        >
+                          2 hrs ago
+                        </Typography>
+                      </div>
+                      <div>
+                        <Typography
+                          sx={{
+                            fontSize: "0.875rem",
+                            fontWeight: "300",
+                            lineHeight: "1.7",
+                            margin: "0px",
+                            color: "#525F7F",
+                          }}
+                        >
+                          Let's meet at Starbucks at 11:30. Wdyt?
+                        </Typography>
+                      </div>
+                    </div>
+                  </div>
+                  <Divider sx={{ mt: 2 }} />
+                </li>
+                <li style={{ padding: "0.5em 0" }}>
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      padding: "0 0.5em",
+                    }}
+                  >
+                    <Avatar
+                      src={ProfileImage}
+                      sx={{ height: "50px", width: "50px" }}
+                    />
+                    <div style={{ width: "100%", padding: "0 1em 0 1.5em" }}>
+                      <div
+                        style={{
+                          display: "flex",
+                          justifyContent: "space-between",
+                        }}
+                      >
+                        <Typography
+                          variant="h6"
+                          sx={{
+                            fontSize: "14px",
+                            fontWeight: "500",
+                            lineHeight: "1.5",
+                            color: "rgb(50, 50, 93)",
+                          }}
+                        >
+                          John Snow
+                        </Typography>
+                        <Typography
+                          variant="body2"
+                          sx={{
+                            textAlign: "right",
+                            color: "rgb(136, 152, 170)",
+                            fontSize: "80%",
+                          }}
+                        >
+                          2 hrs ago
+                        </Typography>
+                      </div>
+                      <div>
+                        <Typography
+                          sx={{
+                            fontSize: "0.875rem",
+                            fontWeight: "300",
+                            lineHeight: "1.7",
+                            margin: "0px",
+                            color: "#525F7F",
+                          }}
+                        >
+                          Let's meet at Starbucks at 11:30. Wdyt?
+                        </Typography>
+                      </div>
+                    </div>
+                  </div>
+                  <Divider sx={{ mt: 2 }} />
+                </li>
+                <li style={{ textAlign: "center" }}>
+                  <Button sx={{ width: "100%", color: "rgb(17, 205, 239)" }}>
+                    View All
+                  </Button>
+                </li>
+              </ul>
+            </Menu>
+            {/*  */}
+            <IconButton
+              sx={{ color: "#fff", p: "0.5em" }}
+              onClick={handleAppsClick}
+            >
+              <FileCopyIcon sx={{ fontSize: "16px" }} />
+            </IconButton>
+            <Menu
+              id="notifications-menu"
+              anchorEl={appsAnchorEl}
+              open={appsOpen}
+              onClose={handleAppsClose}
+              MenuListProps={{
+                "aria-labelledby": "apps-icon",
+              }}
+              anchorOrigin={{
+                vertical: "top",
+                horizontal: "right",
+              }}
+              transformOrigin={{
+                vertical: "top",
+                horizontal: "right",
+              }}
+              PaperProps={{
+                style: {
+                  padding: "1em",
+                  minWidth: "320px",
+                  background: "#172B4D",
+                },
+              }}
+            >
+              <Grid container spacing={2}>
+                <Grid
+                  item
+                  xs={4}
+                  display={"flex"}
+                  justifyContent={"center"}
+                  alignItems={"center"}
+                >
+                  <div
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+                      alignItems: "center",
+                      cursor: "pointer",
+                    }}
+                  >
+                    <Avatar
+                      sx={{
+                        background:
+                          "linear-gradient(87deg, rgb(245, 54, 92), rgb(245, 96, 54)) !important",
+                      }}
+                    >
+                      <DateRangeIcon />
+                    </Avatar>
+                    <small style={{ color: "#525F7F", marginTop: "12px" }}>
+                      Calender
+                    </small>
+                  </div>
+                </Grid>
+                <Grid
+                  item
+                  xs={4}
+                  display={"flex"}
+                  justifyContent={"center"}
+                  alignItems={"center"}
+                >
+                  <div
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+                      alignItems: "center",
+                      cursor: "pointer",
+                    }}
+                  >
+                    <Avatar
+                      sx={{
+                        background:
+                          "linear-gradient(87deg, rgb(251, 99, 64), rgb(251, 177, 64)) !important",
+                      }}
+                    >
+                      <EmailIcon />
+                    </Avatar>
+                    <small style={{ color: "#525F7F", marginTop: "12px" }}>
+                      Email
+                    </small>
+                  </div>
+                </Grid>
+                <Grid
+                  item
+                  xs={4}
+                  display={"flex"}
+                  justifyContent={"center"}
+                  alignItems={"center"}
+                >
+                  <div
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+                      alignItems: "center",
+                      cursor: "pointer",
+                    }}
+                  >
+                    <Avatar
+                      sx={{
+                        background:
+                          "linear-gradient(87deg, rgb(17, 205, 239), rgb(17, 113, 239)) !important",
+                      }}
+                    >
+                      <CreditCardIcon />
+                    </Avatar>
+                    <small style={{ color: "#525F7F", marginTop: "12px" }}>
+                      Cards
+                    </small>
+                  </div>
+                </Grid>
+              </Grid>
+              <Grid container spacing={2} marginTop={"1em"}>
+                <Grid
+                  item
+                  xs={4}
+                  display={"flex"}
+                  justifyContent={"center"}
+                  alignItems={"center"}
+                >
+                  <div
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+                      alignItems: "center",
+                      cursor: "pointer",
+                    }}
+                  >
+                    <Avatar
+                      sx={{
+                        background:
+                          "linear-gradient(87deg, rgb(45, 206, 137), rgb(45, 206, 204)) !important",
+                      }}
+                    >
+                      <ReportIcon />
+                    </Avatar>
+                    <small style={{ color: "#525F7F", marginTop: "12px" }}>
+                      Reports
+                    </small>
+                  </div>
+                </Grid>
+                <Grid
+                  item
+                  xs={4}
+                  display={"flex"}
+                  justifyContent={"center"}
+                  alignItems={"center"}
+                >
+                  <div
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+                      alignItems: "center",
+                      cursor: "pointer",
+                    }}
+                  >
+                    <Avatar
+                      sx={{
+                        background:
+                          "linear-gradient(87deg, rgb(137, 101, 224), rgb(188, 101, 224)) !important",
+                      }}
+                    >
+                      <LocationOnIcon />
+                    </Avatar>
+                    <small style={{ color: "#525F7F", marginTop: "12px" }}>
+                      Maps
+                    </small>
+                  </div>
+                </Grid>
+                <Grid
+                  item
+                  xs={4}
+                  display={"flex"}
+                  justifyContent={"center"}
+                  alignItems={"center"}
+                >
+                  <div
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+                      alignItems: "center",
+                      cursor: "pointer",
+                    }}
+                  >
+                    <Avatar
+                      sx={{
+                        background:
+                          "linear-gradient(87deg, rgb(255, 214, 0), rgb(190, 255, 0)) !important",
+                      }}
+                    >
+                      <ShoppingBasketIcon />
+                    </Avatar>
+                    <small style={{ color: "#525F7F", marginTop: "12px" }}>
+                      Shop
+                    </small>
+                  </div>
+                </Grid>
+              </Grid>
+            </Menu>
+            <Button
+              color="primary"
+              style={{ textTransform: "capitalize", p: "0.5em" }}
+              startIcon={<Avatar src={ProfileImage} alt="Profile Image" />}
+              id="basic-button"
+              aria-controls={open ? "basic-menu" : undefined}
+              aria-haspopup="true"
+              aria-expanded={open ? "true" : undefined}
+              onClick={handleClick}
+            >
+              <Typography
+                color="white"
+                variant="body1"
+                fontSize={"14px"}
+                fontWeight={500}
+              >
+                John Snow
+              </Typography>
+            </Button>
+            <Menu
+              id="basic-menu"
+              anchorEl={anchorEl}
+              open={open}
+              onClose={handleClose}
+              MenuListProps={{
+                "aria-labelledby": "basic-button",
+              }}
+              PaperProps={{
+                style: {
+                  padding: "0.6em", // Increase padding as needed
+                },
+              }}
+            >
+              <MenuItem>
+                <Typography
+                  sx={{ fontSize: "0.8rem", width: "100%", height: "100%" }}
+                >
+                  Welcome!
+                </Typography>
+              </MenuItem>
+              <MenuItem onClick={handleClose}>
+                <PersonIcon sx={{ marginRight: "16px" }} />
+                <Typography>My profile</Typography>
+              </MenuItem>
+              <MenuItem onClick={handleClose}>
+                <SettingsIcon sx={{ marginRight: "16px" }} />
+                <Typography>Settings</Typography>
+              </MenuItem>
+              <MenuItem onClick={handleClose}>
+                <PersonIcon sx={{ marginRight: "16px" }} />
+                <Typography>My profile</Typography>
+              </MenuItem>
+              <MenuItem onClick={handleClose}>
+                <EventNoteIcon sx={{ marginRight: "16px" }} />
+                <Typography>Activity</Typography>
+              </MenuItem>
+              <MenuItem onClick={handleClose}>
+                <LiveHelpIcon sx={{ marginRight: "16px" }} />
+                <Typography>Support</Typography>
+              </MenuItem>
+              <Divider variant="middle" />
+              <MenuItem onClick={handleClose}>
+                <DirectionsRunIcon sx={{ marginRight: "16px" }} />
+                <Typography>Logout</Typography>
+              </MenuItem>
+            </Menu>
+          </Grid>
+        </Grid>
       </AppBar>
     </Box>
   );

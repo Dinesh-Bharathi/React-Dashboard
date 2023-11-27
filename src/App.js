@@ -24,10 +24,17 @@ function App() {
       <Box sx={{ display: "flex" }}>
         <MiniDrawer />
         <Box component="main" sx={{ flexGrow: 1, width: "100%" }}>
-          <AppBar />
-          <Box sx={{ width: "100%", zIndex: "2" }}>
-            {displayLoader && <LinearProgress color="success" />}
+          <Box
+            sx={{
+              width: "100%",
+              zIndex: "2",
+              height: "4px",
+              background: "rgb(17, 205, 239)",
+            }}
+          >
+            {displayLoader && <LinearProgress color="warning" />}
           </Box>
+          <AppBar />
           <Routes>
             <Route path="/" element={<Dashboard />} />
             <Route path="/dashboard" element={<Dashboard />} />

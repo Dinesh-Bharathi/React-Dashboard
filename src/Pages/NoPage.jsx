@@ -1,9 +1,8 @@
-// NotFound.js
 import React from "react";
 import { Typography, Button, Container, Grid } from "@mui/material";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import notFoundImage from "../assets/images/404.jpg";
+import notFoundImage from "../assets/images/404error.jpg";
 
 const NotFound = () => {
   const containerVariants = {
@@ -17,12 +16,20 @@ const NotFound = () => {
   };
 
   return (
-    <Container>
+    <Container
+      style={{
+        minHeight: "100vh",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        transform: "translateY(-40px)",
+      }}
+    >
       <motion.div
         initial="hidden"
         animate="visible"
         variants={containerVariants}
-        transition={{ ease: "easeInOut", duration: 0.5 }}
+        transition={{ ease: "easeInOut", duration: 1 }}
       >
         <Grid
           container
@@ -30,38 +37,37 @@ const NotFound = () => {
           direction="column"
           justifyContent="center"
           alignItems="center"
-          style={{ minHeight: "100vh" }}
         >
           <motion.div variants={itemVariants}>
             <Grid item textAlign={"center"}>
               <img
                 src={notFoundImage}
                 alt="404 Illustration"
-                style={{ width: "50%", marginTop: "20px", textAlign: "center" }}
+                style={{
+                  width: "100%",
+                  height: "50vh",
+                  objectFit: "cover",
+                  objectPosition: "center",
+                }}
               />
             </Grid>
           </motion.div>
           <motion.div variants={itemVariants}>
-            <Grid item>
-              <Typography
-                variant="h4"
-                color="textSecondary"
-                sx={{ m: "0.5em" }}
-              >
-                Oops! Page not found.
+            <Grid item textAlign={"center"} sx={{ mb: "0.5em" }}>
+              <Typography variant="h4" color="textSecondary">
+                Page is under construction.
               </Typography>
             </Grid>
           </motion.div>
           <motion.div variants={itemVariants}>
-            <Grid item sx={{ mb: "1em" }}>
+            <Grid item textAlign={"center"} sx={{ mb: "1em" }}>
               <Typography variant="body1" color="textSecondary">
-                The page you are looking for might be under construction or does
-                not exist.
+                Check back later for any updates.
               </Typography>
             </Grid>
           </motion.div>
           <motion.div variants={itemVariants}>
-            <Grid item>
+            <Grid item textAlign={"center"}>
               <Button
                 component={Link}
                 to="/"
