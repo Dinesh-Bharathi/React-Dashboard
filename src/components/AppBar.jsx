@@ -93,6 +93,7 @@ export default function ButtonAppBar() {
                   <SearchIcon fontSize="small" sx={{ fontSize: "14px" }} />
                 </IconButton>
                 <InputBase
+                  id="navsearch"
                   sx={{ flex: 1, color: "rgb(33, 37, 41) !important;" }}
                   placeholder="Search"
                   inputProps={{ "aria-label": "search google maps" }}

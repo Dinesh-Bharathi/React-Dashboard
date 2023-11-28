@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Box, CircularProgress } from "@mui/material";
+import { Box, CircularProgress, CssBaseline } from "@mui/material";
 import LinearProgress from "@mui/material/LinearProgress";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import "./App.css";
@@ -21,6 +21,7 @@ function App() {
 
   return (
     <Box>
+      {/* <CssBaseline /> */}
       <Box sx={{ display: "flex" }}>
         <MiniDrawer />
         <Box component="main" sx={{ flexGrow: 1, width: "100%" }}>
