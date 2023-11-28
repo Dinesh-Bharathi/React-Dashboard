@@ -21,7 +21,7 @@ function App() {
 
   return (
     <Box>
-      {/* <CssBaseline /> */}
+      <CssBaseline />
       <Box sx={{ display: "flex" }}>
         <MiniDrawer />
         <Box component="main" sx={{ flexGrow: 1, width: "100%" }}>
@@ -37,7 +37,7 @@ function App() {
           </Box>
           <AppBar />
           <Routes>
-            <Route path="/" element={<Dashboard />} />
+            <Route path="/" element={<h1></h1>} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/*" element={<NoPage />} />
           </Routes>
