@@ -42,7 +42,7 @@ const openedMixin = (theme) => ({
     duration: 50,
   }),
   overflowX: "hidden",
-  overflowY: "scroll",
+  overflowY: "auto",
   "&::-webkit-scrollbar": {
     width: "0px",
     transitions: "width 1s, opacity 1s",
