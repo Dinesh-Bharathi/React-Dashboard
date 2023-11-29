@@ -131,7 +131,12 @@ const LineChart = () => {
 
   return (
     <Box
-      sx={{ backgroundColor: "#232D3F", padding: "20px", borderRadius: "8px" }}
+      sx={{
+        backgroundColor: "#232D3F",
+        padding: "20px",
+        borderRadius: "8px",
+        boxShadow: "4px 6px 8px #aaa",
+      }}
     >
       {/* <CssBaseline /> */}
       <Grid container justifyContent="space-between" alignItems="center" mb={2}>

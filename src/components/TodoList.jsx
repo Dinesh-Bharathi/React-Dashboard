@@ -12,6 +12,7 @@ import {
   Button,
   Checkbox,
   CssBaseline,
+  Paper,
 } from "@mui/material";
 import { Add } from "@mui/icons-material";
 
@@ -123,7 +124,7 @@ function TodoList() {
   }, [displayInput]);
 
   return (
-    <div>
+    <Paper elevation={2}>
       <CssBaseline />
       <Card
         sx={{
@@ -159,6 +160,7 @@ function TodoList() {
             <IconButton
               aria-label="add"
               onClick={() => setDisplayInput(!displayInput)}
+              sx={{ padding: "4px", margin: "0 0.5em" }}
             >
               <Add />
             </IconButton>
@@ -169,10 +171,16 @@ function TodoList() {
               color: "#172B4D",
               fontWeight: "600",
             },
+            padding: "20px 24px",
           }}
         />
         <Divider />
-        <CardContent>
+        <CardContent
+          sx={{
+            padding: "16px !important",
+            paddingBottom: "16px !important", // Adjusted padding bottom
+          }}
+        >
           {tasks.map((task, index) => (
             <div key={index}>
               <ListItem
@@ -230,7 +238,7 @@ function TodoList() {
           </Grid>
         </motion.div>
       </Card>
-    </div>
+    </Paper>
   );
 }
 

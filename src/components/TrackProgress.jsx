@@ -4,9 +4,11 @@ import {
   Card,
   CardContent,
   CardHeader,
+  CssBaseline,
   Divider,
   Grid,
   LinearProgress,
+  Paper,
   Typography,
 } from "@mui/material";
 
@@ -77,41 +79,45 @@ const ListItem = ({ title, progress, avatar, isLastItem }) => (
 
 function TrackProgress() {
   return (
-    <Card
-      sx={{
-        minHeight: "432px",
-        maxHeight: "432px",
-        overflow: "hidden",
-      }}
-    >
-      <CardHeader
-        title="Track Progress"
+    <Paper elevation={2}>
+      <CssBaseline />
+      <Card
         sx={{
-          "& .MuiTypography-root": {
-            fontSize: "17px !important",
-            color: "#172B4D",
-            fontWeight: "600",
-          },
-        }}
-      />
-      <Divider />
-      <CardContent
-        sx={{
-          padding: "14px !important",
-          paddingBottom: "14px !important", // Adjusted padding bottom
+          minHeight: "432px",
+          maxHeight: "432px",
+          overflow: "hidden",
         }}
       >
-        {items.map((item, index) => (
-          <ListItem
-            key={item.id}
-            title={item.title}
-            progress={item.progress}
-            avatar={item.avatar}
-            isLastItem={index === items.length - 1}
-          />
-        ))}
-      </CardContent>
-    </Card>
+        <CardHeader
+          title="Track Progress"
+          sx={{
+            "& .MuiTypography-root": {
+              fontSize: "17px !important",
+              color: "#172B4D",
+              fontWeight: "600",
+            },
+            padding: "20px 24px",
+          }}
+        />
+        <Divider />
+        <CardContent
+          sx={{
+            padding: "14px !important",
+            paddingBottom: "14px !important", // Adjusted padding bottom
+          }}
+        >
+          {items.map((item, index) => (
+            <ListItem
+              key={item.id}
+              title={item.title}
+              progress={item.progress}
+              avatar={item.avatar}
+              isLastItem={index === items.length - 1}
+            />
+          ))}
+        </CardContent>
+      </Card>
+    </Paper>
   );
 }
 

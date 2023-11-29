@@ -71,7 +71,7 @@ const LightBarChart = () => {
       sx={{
         background: "#fff",
         borderRadius: "8px",
-        boxShadow: "1px 1px 8px #aaa",
+        boxShadow: "4px 6px 8px #aaa",
       }}
     >
       <Grid sx={{ padding: "20px 24px" }}>

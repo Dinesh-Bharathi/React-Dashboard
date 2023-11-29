@@ -354,7 +354,7 @@ function Header() {
               <>
                 <ArrowUpwardOutlinedIcon
                   sx={{ fontSize: "16px", margin: "0 0 0 -4px" }}
-                />{" "}
+                />
                 10%
               </>
             }

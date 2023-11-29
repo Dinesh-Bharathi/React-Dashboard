@@ -37,7 +37,7 @@ function App() {
           </Box>
           <AppBar />
           <Routes>
-            <Route path="/" element={<h1></h1>} />
+            <Route path="/" element={<Dashboard />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/*" element={<NoPage />} />
           </Routes>

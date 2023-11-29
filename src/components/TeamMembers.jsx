@@ -6,9 +6,9 @@ import {
   CssBaseline,
   Typography,
   Avatar,
-  IconButton,
   Divider,
   Button,
+  Paper,
 } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import TeamMemberOne from "../assets/images/Team-member-1.jpg";
@@ -33,13 +33,13 @@ function TeamMembers() {
     {
       id: 3,
       name: "Samantha Ivy",
-      avatarSrc: TeamMemberFour,
+      avatarSrc: TeamMemberThree,
       onlineStatus: "In a Meeting",
     },
     {
       id: 4,
       name: "John Michelle",
-      avatarSrc: TeamMemberThree,
+      avatarSrc: TeamMemberFour,
       onlineStatus: "Online",
     },
     // Add more members as needed
@@ -59,9 +59,14 @@ function TeamMembers() {
   };
 
   return (
-    <React.Fragment>
+    <Paper elevation={2}>
       <CssBaseline />
-      <Card sx={{ minHeight: "432px", maxHeight: "432px" }}>
+      <Card
+        sx={{
+          minHeight: "432px",
+          maxHeight: "432px",
+        }}
+      >
         <CardHeader
           title="Team members"
           sx={{
@@ -70,6 +75,7 @@ function TeamMembers() {
               color: "#172B4D",
               fontWeight: "600",
             },
+            padding: "20px 24px",
           }}
         />
         <Divider />
@@ -98,22 +104,41 @@ function TeamMembers() {
                     {member.name}
                   </Typography>
                   <div style={{ display: "flex", alignItems: "center" }}>
-                    <div
-                      style={{
-                        width: "6px",
-                        height: "6px",
-                        borderRadius: "50%",
-                        backgroundColor: getStatusColor(member.onlineStatus),
-                        marginLeft: "5px",
-                        marginRight: "5px",
-                        display: "inline-block",
-                      }}
-                    />
+                    <div style={{ position: "relative" }}>
+                      <div
+                        className="ripple-dot"
+                        style={{
+                          width: "6px",
+                          height: "6px",
+                          borderRadius: "50%",
+                          backgroundColor: getStatusColor(member.onlineStatus),
+                          marginLeft: "5px",
+                          marginRight: "5px",
+                          display: "inline-block",
+                        }}
+                      />
+                      <div
+                        className="ripple-ring"
+                        style={{
+                          position: "absolute",
+                          top: "30%",
+                          left: "4%",
+                          width: "14px",
+                          height: "14px",
+                          border: `4px solid ${getStatusColor(
+                            member.onlineStatus
+                          )}`,
+                          borderRadius: "50%",
+                          animation: "ripple 1.2s infinite ease-in-out",
+                        }}
+                      />
+                    </div>
                     <small
                       style={{
                         fontSize: "12.8px",
                         color: "#525F7F",
                         fontWeight: 400,
+                        marginTop: "3px",
                       }}
                     >
                       {member.onlineStatus}
@@ -124,8 +149,9 @@ function TeamMembers() {
                   variant="contained"
                   size="small"
                   sx={{
+                    background: "#5E72E4",
                     fontWeight: 600, // Adjust the font weight
-                    padding: "4px 8px !important", // Override the padding
+                    padding: "4px !important", // Override the padding
                   }}
                 >
                   Add
@@ -136,7 +162,7 @@ function TeamMembers() {
           ))}
         </CardContent>
       </Card>
-    </React.Fragment>
+    </Paper>
   );
 }
 
