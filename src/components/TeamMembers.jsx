@@ -83,6 +83,7 @@ function TeamMembers() {
           sx={{
             padding: "14px !important",
             paddingBottom: "14px !important", // Adjusted padding bottom
+            overflowY: "auto",
           }}
         >
           {members.map((member, index) => (

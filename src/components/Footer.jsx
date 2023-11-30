@@ -8,7 +8,12 @@ const Footer = () => {
   return (
     <Box sx={{ background: "rgb(245, 245, 255)", paddingTop: "1em" }}>
       <Grid container p={3}>
-        <Grid item sm={6} xs={12}>
+        <Grid
+          item
+          sm={6}
+          xs={12}
+          sx={{ display: "flex", justifyContent: { xs: "center", sm: "left" } }}
+        >
           <Box>
             <span style={{ marginRight: "0.5em", color: "#8898AA" }}>
               &#169; 2023
@@ -18,7 +23,13 @@ const Footer = () => {
             </Link>
           </Box>
         </Grid>
-        <Grid item sm={6} xs={12} display={"flex"} justifyContent={"end"}>
+        <Grid
+          item
+          sm={6}
+          xs={12}
+          display={"flex"}
+          sx={{ justifyContent: { xs: "center", sm: "end" } }}
+        >
           <Stack direction={"row"} spacing={2}>
             <Link to="#" style={{ color: "#8898AA" }}>
               Creative Tim

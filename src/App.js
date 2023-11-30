@@ -77,6 +77,7 @@ function App() {
               change={toggleDarkMode}
               drawerState={displayMiniDrawer}
               miniDrawer={setDisplayMiniDrawer}
+              windowWidth={windowWidth}
             />
             <Routes>
               <Route path="/" element={<Dashboard />} />

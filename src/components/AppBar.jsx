@@ -25,8 +25,7 @@ import LocationOnIcon from "@mui/icons-material/LocationOn";
 import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
 import { ThemeProvider, createTheme, useTheme } from "@mui/material/styles";
 import MenuIcon from "@mui/icons-material/Menu";
-
-import ProfileImage from "../assets/images/profile.png";
+import ProfileImage from "../assets/images/Team-member-4.jpg";
 import { Brightness4, Brightness7, MenuBook } from "@mui/icons-material";
 
 export default function ButtonAppBar(props) {
@@ -37,6 +36,26 @@ export default function ButtonAppBar(props) {
   const [appsAnchorEl, setAppsAnchorEl] = React.useState(null);
 
   const [darkMode, setDarkMode] = React.useState(false);
+  const [displaySearch, setDisplaySearch] = React.useState(true);
+
+  const [windowWidth, setWindowWidth] = React.useState(window.innerWidth);
+
+  React.useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    if (windowWidth < 600) {
+      setDisplaySearch(false);
+    } else {
+      setDisplaySearch(true);
+    }
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   const toggleDarkMode = () => {
     setDarkMode((prevMode) => !prevMode);
@@ -102,7 +121,8 @@ export default function ButtonAppBar(props) {
               item
               md={4}
               sm={5}
-              sx={{ display: { xs: "none", sm: "block" } }}
+              xs={12}
+              sx={{ display: displaySearch ? "block" : "none" }}
             >
               <Toolbar>
                 <Paper
@@ -147,6 +167,12 @@ export default function ButtonAppBar(props) {
                 mr: "1em",
               }}
             >
+              <IconButton
+                sx={{ display: windowWidth > 600 ? "none" : "block", mt: 0.9 }}
+                onClick={() => setDisplaySearch(!displaySearch)}
+              >
+                <SearchIcon sx={{ color: "#fff" }} />
+              </IconButton>
               <IconButton
                 sx={{ ml: 1 }}
                 onClick={toggleDarkMode}
