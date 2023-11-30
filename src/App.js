@@ -1,16 +1,19 @@
 import React, { useState, useEffect } from "react";
-import { Box, CircularProgress, CssBaseline } from "@mui/material";
+import { Box, CircularProgress, CssBaseline, Switch } from "@mui/material";
 import LinearProgress from "@mui/material/LinearProgress";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 import "./App.css";
 import MiniDrawer from "./components/MiniDrawer";
 import Dashboard from "./Pages/Dashboard";
 import NoPage from "./Pages/NoPage";
 import AppBar from "./components/AppBar";
+import Footer from "./components/Footer";
 
 function App() {
   const location = useLocation();
   const [displayLoader, setDisplayLoader] = useState(false);
+  const [darkMode, setDarkMode] = useState(false);
 
   useEffect(() => {
     setDisplayLoader(true);
@@ -19,31 +22,51 @@ function App() {
     }, 2000);
   }, [location]);
 
+  const toggleDarkMode = () => {
+    setDarkMode((prevMode) => !prevMode);
+  };
+
+  const theme = createTheme({
+    palette: {
+      mode: darkMode ? "dark" : "light",
+    },
+  });
+
   return (
-    <Box>
-      <CssBaseline />
-      <Box sx={{ display: "flex" }}>
-        <MiniDrawer />
-        <Box component="main" sx={{ flexGrow: 1, width: "100%" }}>
+    <ThemeProvider theme={theme}>
+      <Box>
+        <CssBaseline />
+        <Box sx={{ display: "flex" }}>
+          <MiniDrawer />
           <Box
+            component="main"
             sx={{
+              flexGrow: 1,
               width: "100%",
-              zIndex: "2",
-              height: "4px",
-              background: "rgb(17, 205, 239)",
+              background: "rgb(245, 245, 255)",
             }}
           >
-            {displayLoader && <LinearProgress color="warning" />}
+            <Box
+              sx={{
+                width: "100%",
+                zIndex: "2",
+                height: "4px",
+                background: "rgb(17, 205, 239)",
+              }}
+            >
+              {displayLoader && <LinearProgress color="warning" />}
+            </Box>
+            <AppBar checked={darkMode} change={toggleDarkMode} />
+            <Routes>
+              <Route path="/" element={<Dashboard />} />
+              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/*" element={<NoPage />} />
+            </Routes>
+            <Footer />
           </Box>
-          <AppBar />
-          <Routes>
-            <Route path="/" element={<Dashboard />} />
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/*" element={<NoPage />} />
-          </Routes>
         </Box>
       </Box>
-    </Box>
+    </ThemeProvider>
   );
 }
 

@@ -72,7 +72,6 @@ const openedMixin = (theme) => ({
     },
   },
 });
-
 const closedMixin = (theme) => ({
   transition: theme.transitions.create("width", {
     easing: theme.transitions.easing.sharp,
@@ -112,7 +111,7 @@ const Drawer = styled(MuiDrawer, {
   border: "none",
   overflowX: "hidden",
   overflowY: "hidden",
-  boxShadow: open ? "none" : "0px 0px 10px rgba(0, 0, 0, 0.2)",
+  boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.2)",
   "& .MuiDrawer-paper": {
     transition: theme.transitions.create("width", {
       easing: theme.transitions.easing.sharp,
@@ -120,7 +119,7 @@ const Drawer = styled(MuiDrawer, {
     }),
     ...openedMixin(theme),
     border: "none",
-    boxShadow: open ? "none" : "0px 0px 10px rgba(0, 0, 0, 0.2)", // Apply box shadow only when closed
+    boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.2)", // Apply box shadow only when closed
   },
   ...(!open && {
     ...closedMixin(theme),
