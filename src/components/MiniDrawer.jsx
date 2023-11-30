@@ -32,6 +32,7 @@ import { useLocation } from "react-router-dom";
 import Collapse from "@mui/material/Collapse";
 import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
+import { Box } from "@mui/material";
 
 const drawerWidth = 250;
 
@@ -87,9 +88,6 @@ const closedMixin = (theme) => ({
     transitions: "width 1s, opacity 1s",
     opacity: 0,
   },
-  // "& .MuiButtonBase-root": {
-  //   transform: "translateX(10px)",
-  // },
 });
 
 const DrawerHeader = styled("div")(({ theme }) => ({
@@ -131,7 +129,7 @@ const Drawer = styled(MuiDrawer, {
   }),
 }));
 
-export default function MiniDrawer() {
+export default function MiniDrawer(props) {
   const globalTheme = createTheme({});
   const location = useLocation();
   const theme = useTheme();
@@ -217,7 +215,14 @@ export default function MiniDrawer() {
   };
 
   return (
-    <>
+    <Box
+      sx={{
+        display: props.display
+          ? "block"
+          : "none" || (props.windowWidth > 899 && "block"),
+        zIndex: "5",
+      }}
+    >
       <ThemeProvider theme={globalTheme}>
         <CssBaseline />
         <Drawer
@@ -1912,6 +1917,6 @@ export default function MiniDrawer() {
         </Drawer>
         <Outlet />
       </ThemeProvider>
-    </>
+    </Box>
   );
 }

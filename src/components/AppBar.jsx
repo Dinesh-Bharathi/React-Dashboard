@@ -77,6 +77,10 @@ export default function ButtonAppBar(props) {
     setAppsAnchorEl(null);
   };
 
+  const handleDrawerMenu = () => {
+    props.miniDrawer(!props.drawerState);
+  };
+
   return (
     <ThemeProvider theme={dynamicTheme}>
       <Box sx={{ flexGrow: 1 }}>
@@ -143,15 +147,6 @@ export default function ButtonAppBar(props) {
                 mr: "1em",
               }}
             >
-              <IconButton
-                sx={{
-                  color: "#fff",
-                  mt: 0.5,
-                  display: { sm: "block", md: "none" },
-                }}
-              >
-                <MenuIcon />
-              </IconButton>
               <IconButton
                 sx={{ ml: 1 }}
                 onClick={toggleDarkMode}
@@ -742,6 +737,7 @@ export default function ButtonAppBar(props) {
                   variant="body1"
                   fontSize={"14px"}
                   fontWeight={500}
+                  sx={{ display: { xs: "none", sm: "block" } }}
                 >
                   John Snow
                 </Typography>
@@ -796,6 +792,16 @@ export default function ButtonAppBar(props) {
                   <Typography>Logout</Typography>
                 </MenuItem>
               </Menu>
+              <IconButton
+                onClick={handleDrawerMenu}
+                sx={{
+                  color: "#fff",
+                  mt: 0.5,
+                  display: { sm: "block", md: "none" },
+                }}
+              >
+                <MenuIcon />
+              </IconButton>
             </Grid>
           </Grid>
         </AppBar>

@@ -14,6 +14,22 @@ function App() {
   const location = useLocation();
   const [displayLoader, setDisplayLoader] = useState(false);
   const [darkMode, setDarkMode] = useState(false);
+  const [displayMiniDrawer, setDisplayMiniDrawer] = useState(true);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  console.log(windowWidth > 900);
 
   useEffect(() => {
     setDisplayLoader(true);
@@ -36,8 +52,8 @@ function App() {
     <ThemeProvider theme={theme}>
       <Box>
         <CssBaseline />
-        <Box sx={{ display: "flex" }}>
-          <MiniDrawer />
+        <Box sx={{ display: windowWidth > 900 && "flex" }}>
+          <MiniDrawer display={displayMiniDrawer} windowWidth={windowWidth} />
           <Box
             component="main"
             sx={{
@@ -56,7 +72,12 @@ function App() {
             >
               {displayLoader && <LinearProgress color="warning" />}
             </Box>
-            <AppBar checked={darkMode} change={toggleDarkMode} />
+            <AppBar
+              checked={darkMode}
+              change={toggleDarkMode}
+              drawerState={displayMiniDrawer}
+              miniDrawer={setDisplayMiniDrawer}
+            />
             <Routes>
               <Route path="/" element={<Dashboard />} />
               <Route path="/dashboard" element={<Dashboard />} />
