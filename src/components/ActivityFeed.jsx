@@ -73,7 +73,7 @@ function ActivityFeed() {
                 alignItems={"center"}
                 justifyContent={"space-between"}
               >
-                <Grid item xs={6} display={"flex"} alignItems={"center"}>
+                <Grid item xs={8} display={"flex"} alignItems={"center"}>
                   <Avatar
                     src={Image1}
                     variant="rounded"
@@ -96,7 +96,7 @@ function ActivityFeed() {
                     </Typography>
                   </Grid>
                 </Grid>
-                <Grid item xs={6} textAlign={"right"}>
+                <Grid item xs={4} textAlign={"right"}>
                   <Button
                     size="small"
                     variant="contained"

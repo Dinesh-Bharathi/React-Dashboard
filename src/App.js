@@ -9,6 +9,9 @@ import Dashboard from "./Pages/Dashboard";
 import NoPage from "./Pages/NoPage";
 import AppBar from "./components/AppBar";
 import Footer from "./components/Footer";
+import ValidationForm from "./Pages/Form.Validation";
+import ElementsForm from "./Pages/Form.Elements";
+import FormComponents from "./Pages/Form.Components";
 
 function App() {
   const location = useLocation();
@@ -53,7 +56,12 @@ function App() {
       <Box>
         <CssBaseline />
         <Box sx={{ display: windowWidth > 900 && "flex" }}>
-          <MiniDrawer display={displayMiniDrawer} windowWidth={windowWidth} />
+          <MiniDrawer
+            display={displayMiniDrawer}
+            windowWidth={windowWidth}
+            drawerState={displayMiniDrawer}
+            miniDrawer={setDisplayMiniDrawer}
+          />
           <Box
             component="main"
             sx={{
@@ -82,6 +90,9 @@ function App() {
             <Routes>
               <Route path="/" element={<Dashboard />} />
               <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/forms/elements" element={<ElementsForm />} />
+              <Route path="/forms/validation" element={<ValidationForm />} />
+              <Route path="/forms/components" element={<FormComponents />} />
               <Route path="/*" element={<NoPage />} />
             </Routes>
             <Footer />

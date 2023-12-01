@@ -33,6 +33,8 @@ import Collapse from "@mui/material/Collapse";
 import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
 import { Box } from "@mui/material";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import { Close } from "@mui/icons-material";
 
 const drawerWidth = 250;
 
@@ -142,6 +144,7 @@ export default function MiniDrawer(props) {
   const [openFormsSubMenu, setOpenFormsSubMenu] = React.useState(false);
   const [openTablesSubMenu, setopenTablesSubMenu] = React.useState(false);
   const [openMapsSubMenu, setopenMapsSubMenu] = React.useState(false);
+  const isMd = useMediaQuery("(max-width:800px)");
 
   const handleDashboardSubMenuClick = () => {
     setOpenDashboardSubMenu(!openDashboardSubMenu);
@@ -214,6 +217,10 @@ export default function MiniDrawer(props) {
     }
   };
 
+  const handleDrawerMenu = () => {
+    props.miniDrawer(!props.drawerState);
+  };
+
   return (
     <Box
       sx={{
@@ -250,9 +257,15 @@ export default function MiniDrawer(props) {
                 }}
               />
             </Link>
-            <IconButton onClick={handleMenuClick}>
-              {hoverOpen ? <MenuOpenIcon /> : <MenuIcon />}
-            </IconButton>
+            {isMd ? (
+              <IconButton onClick={handleDrawerMenu}>
+                <Close />
+              </IconButton>
+            ) : (
+              <IconButton onClick={handleMenuClick}>
+                {hoverOpen ? <MenuOpenIcon /> : <MenuIcon />}{" "}
+              </IconButton>
+            )}
           </DrawerHeader>
           <List>
             <ListItem

@@ -157,7 +157,7 @@ const LineChart = () => {
             Sales Value
           </Typography>
         </Grid>
-        <Grid item xs={6} sx={{ textAlign: "right" }}>
+        <Grid item xs={12} sm={6} sx={{ textAlign: "right" }}>
           <Button
             variant="contained"
             onClick={() => handleButtonClick("monthly")}
