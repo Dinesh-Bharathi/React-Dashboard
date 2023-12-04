@@ -12,6 +12,9 @@ import Footer from "./components/Footer";
 import ValidationForm from "./Pages/Form.Validation";
 import ElementsForm from "./Pages/Form.Elements";
 import FormComponents from "./Pages/Form.Components";
+import GoogleMaps from "./Pages/Maps.Google";
+import VectorMaps from "./Pages/Maps.Vector";
+import Charts from "./Pages/Charts";
 
 function App() {
   const location = useLocation();
@@ -31,8 +34,6 @@ function App() {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
-
-  console.log(windowWidth > 900);
 
   useEffect(() => {
     setDisplayLoader(true);
@@ -93,6 +94,9 @@ function App() {
               <Route path="/forms/elements" element={<ElementsForm />} />
               <Route path="/forms/validation" element={<ValidationForm />} />
               <Route path="/forms/components" element={<FormComponents />} />
+              <Route path="/maps/googlemaps" element={<GoogleMaps />} />
+              <Route path="/maps/vectormaps" element={<VectorMaps />} />
+              <Route path="/charts" element={<Charts />} />
               <Route path="/*" element={<NoPage />} />
             </Routes>
             <Footer />

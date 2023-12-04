@@ -34,13 +34,14 @@ function BreadCrumbs(props) {
           <Typography
             variant="h6"
             color="white"
-            style={{ marginRight: { xs: "0.5em", sm: "1.5em" } }}
+            // style={{ marginRight: { xs: "0.5em", sm: "1.5em" } }}
           >
             {props.title}
           </Typography>
           <Breadcrumbs
             separator={<span style={{ color: "#ffffff" }}>-</span>}
             aria-label="breadcrumb"
+            sx={{ ml: { xs: 2, sm: 3 } }}
           >
             <RouterLink
               to="/"
@@ -51,7 +52,7 @@ function BreadCrumbs(props) {
               </IconButton>
             </RouterLink>
             <RouterLink
-              to="/*"
+              to="#"
               style={{ textDecoration: "none", color: "#ffffff" }}
             >
               {props.firstLink}

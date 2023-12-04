@@ -20,11 +20,16 @@ const Footer = () => {
               justifyContent: { xs: "center", sm: "left" },
             }}
           >
-            <Box>
+            <Box sx={{ mb: { xs: "1em", sm: "0px" } }}>
               <span style={{ marginRight: "0.5em", color: "#8898AA" }}>
                 &#169; 2023
               </span>
-              <Link to="#" style={{ color: theme.palette.primary.main }}>
+              <Link
+                to="#"
+                style={{
+                  color: theme.palette.primary.main,
+                }}
+              >
                 Creative Tim
               </Link>
             </Box>
@@ -37,7 +42,13 @@ const Footer = () => {
             sx={{ justifyContent: { xs: "center", sm: "end" } }}
           >
             <Stack direction={isXs ? "column" : "row"} spacing={2}>
-              <Link to="#" style={{ color: "#8898AA", textAlign: "center" }}>
+              <Link
+                to="#"
+                style={{
+                  color: "#8898AA",
+                  textAlign: "center",
+                }}
+              >
                 CreativeTim
               </Link>
               <Link to="#" style={{ color: "#8898AA", textAlign: "center" }}>
